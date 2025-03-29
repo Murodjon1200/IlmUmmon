@@ -7,7 +7,7 @@ from aiogram.utils import executor
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 import pandas as pd
 
-
+# test
 # ================ DATABASE ================
 def create_db():
     conn = sqlite3.connect('ilm_ummoni.db')
