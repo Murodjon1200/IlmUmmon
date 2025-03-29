@@ -1,2 +1,0 @@
-"# IlmUmmoni_bot" 
-"# IlmUmmoni" 

@@ -1,0 +1,27 @@
+name: Deploy Telegram Bot to Ubuntu Server
+
+on:
+  push:
+    branches: [ main ]  # main branchga push qilinganda ishga tushadi
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # GitHub-ning bepul runneri
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: Deploy Bot to Server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            cd /path/to/your/bot &&  # Bot papkasiga o'tish
+            git pull origin main &&   # Yangi kodni olish
+            sudo systemctl restart mybot.service  # Botni qayta ishga tushirish
+          "
